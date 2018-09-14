@@ -94,22 +94,7 @@ namespace Lab1_Awerage_Marks
                         Console.WriteLine("Nice try, friend!");
                         break;                     
                 }
-
-             
-
             }
-            
-            
- 
-
-            // List<IAverageCalculatable> items = new List<IAverageCalculatable>();
-            // items.Add((IAverageCalculatable)g);
-            // items.Add((IAverageCalculatable)s);
-            // foreach(IAverageCalculatable item in items)
-            // {
-            //     item.CalculateAverageMark();
-            // }
-
          }
     }
 }
