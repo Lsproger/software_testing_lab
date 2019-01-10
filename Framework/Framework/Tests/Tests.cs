@@ -62,20 +62,25 @@ namespace Framework
             Assert.AreEqual("Saint Petersburg, Pulkovo", steps.GetDestinationFieldValue());
         }
 
-        //[Test]
-        //public void OneCanLoginGithub()
-        //{
-        //    steps.LoginGithub(USERNAME, PASSWORD);
-        //    Assert.AreEqual(USERNAME, steps.GetLoggedInUserName());
-        //}
+        [Test]
+        public void CheckRussianLocale()
+        {
+            steps.ChangeLocaleToRussian();
+            Assert.AreEqual("Найти", steps.GetSearchButtonText());
+        }
 
-        //[Test]
-        //public void OneCanCreateProject()
-        //{
-        //    steps.LoginGithub(USERNAME, PASSWORD);
-        //    string repositoryName = steps.GenerateRandomRepositoryNameWithCharLength(REPOSITORY_RANDOM_POSTFIX_LENGTH);
-        //    steps.CreateNewRepository(repositoryName, "auto-generated test repo");
-        //    Assert.AreEqual(repositoryName, steps.GetCurrentRepositoryName());
-        //}
+        [Test]
+        public void SwitchToSecondAd()
+        {
+            steps.SwitchToSecondAd();
+            Assert.AreEqual("Collect\r\nimpressions", steps.GetSecondPromoText());
+        }
+
+        [Test]
+        public void SwitchToThirdAd()
+        {
+            steps.SwitchToThirdAd();
+            Assert.AreEqual("Fly easily", steps.GetThirdPromoText());
+        }
     }
 }

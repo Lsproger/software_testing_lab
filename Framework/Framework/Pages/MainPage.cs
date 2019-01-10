@@ -33,46 +33,30 @@ namespace Framework.Pages
         [FindsBy(How = How.Id, Using = "date-opener2")]
         private IWebElement datePicker;
 
-        [FindsBy(How = How.Id, Using = "flights_return_way_bot2")]
-        private IWebElement bidirectionalTrip;
+        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/header/div[3]/div/ul/li[6]/a")]
+        private IWebElement langPicker;
 
         [FindsBy(How = How.XPath, Using = "//*[@id=\"flights_one_way_bot2\"]")]
         private IWebElement oneWayTrip;
 
-        [FindsBy(How = How.XPath, Using = @"//*[@id='flights - dates -return-prepop - whitelabel_ru']")]
-        private IWebElement returnsDate;
-
-        [FindsBy(How = How.XPath, Using = @"/html/body/div[1]/div[2]/div/div/div[4]/div/div[2]/div[2]/div[2]/div/div[2]/div/div/form/div[1]/div[1]/label/div[2]")]
-        private IWebElement loginError;
-
-
-        [FindsBy(How = How.XPath, Using = @"/html/body/div[1]/div[2]/div/div/div[4]/div/div")]
-        private IWebElement accountButton;
-
-        [FindsBy(How = How.XPath, Using = @"/html/body/div[1]/div[2]/div/div/div[4]/div/div[2]/div[2]/div[2]/div/div[2]/div/div/form/div[1]/div[1]/label/input")]
-        private IWebElement emailField;
-
-        [FindsBy(How = How.XPath, Using = @"/html/body/div[1]/div[2]/div/div/div[4]/div/div[2]/div[2]/div[2]/div/div[2]/div/div/form/div[2]/button[1]")]
-        private IWebElement loginButton;
-
-        [FindsBy(How = How.XPath, Using = "//*[@id=\"header - nav\"]/ul/li[6]/a")]
-        private IWebElement languageList;
+        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/header/div[3]/div/ul/li[6]/form/div/div[2]/div/a[1]/div")]
+        private IWebElement russianLang;
 
         [FindsBy(How = How.Id, Using = "search-btn-expand-bot")]
         private IWebElement buttonSearch;
 
-        [FindsBy(How = How.XPath, Using = @"//*[@id=':0']/div/div/div[1]/div/div[3]/div/div/div/div[4]/div/label/div[1]")]
-        private IWebElement agreeCheckBox;
+        [FindsBy(How = How.Id, Using = "slick-slide-control01")]
+        private IWebElement secondAdButton;
 
-        [FindsBy(How = How.XPath, Using = @"/html/body/div[1]/div/div[3]/div[1]/div[1]/div[2]/div/div[10]/div[2]/div[5]/div[2]/div[5]/div/div[1]")]
-        private IWebElement badSearchParams;
+        [FindsBy(How = How.Id, Using = "slick-slide-control02")]
+        private IWebElement thirdAdButton;
 
+        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div[2]/div[3]/div[1]/div/div/div[2]/div/div/div/a/h3")]
+        private IWebElement secondPromo;
 
-        [FindsBy(How = How.XPath, Using = "//summary[@aria-label='Create new…']")]
-        private IWebElement buttonCreateNew;
-
-        [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'New repository')]")]
-        private IWebElement linkNewRepository;
+        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div[2]/div[3]/div[1]/div/div/div[3]/div/div/div/a/h3")]
+        private IWebElement thirdPromo;
+        
 
         private IWebDriver driver;
 
@@ -88,10 +72,9 @@ namespace Framework.Pages
             driver.Navigate().GoToUrl(BASE_URL);
         }
 
-        public void ClickOnCreateNewRepositoryButton()
+        public void SearchClick()
         {
-            buttonCreateNew.Click();
-            linkNewRepository.Click();
+            buttonSearch.Click();
         }
 
         public void FillAirports(string from, string to)
@@ -117,6 +100,7 @@ namespace Framework.Pages
         public void SetOneWayRoute()
         {
             wait.Until(ExpectedConditions.ElementToBeClickable(datePicker));
+            ExpectedConditions.ElementIsVisible(By.Id("flights_return_way_bot2"));
             datePicker.Click();
             ((IJavaScriptExecutor) driver).ExecuteScript("arguments[0].checked = true;", oneWayTrip);
         }
@@ -125,6 +109,7 @@ namespace Framework.Pages
         {
             for (int i = 0; i < directions; i++)
             {
+                datePicker.Click();
                 Thread.Sleep(100);
                 IWebElement today = driver.FindElement(By.CssSelector("#datepicker2 > div:nth-child(1) > table:nth-child(2) > tbody:nth-child(2) > tr:nth-child(2) > td:nth-child(5) > a:nth-child(1)"));
                 //wait.Until(ExpectedConditions.ElementToBeClickable(today));
@@ -132,10 +117,22 @@ namespace Framework.Pages
             }
         }
 
-        public void SearchClick()
+        public void SetRussian()
         {
-            buttonSearch.Click();
+            langPicker.Click();
+            russianLang.Click();
         }
+
+        public void GoToSecondAd()
+        {
+            secondAdButton.Click();
+        }
+
+        public void GoToThirdAd()
+        {
+            thirdAdButton.Click();
+        }
+
 
         public string GetBadDestinationError()
         {
@@ -167,6 +164,20 @@ namespace Framework.Pages
             return cityFrom.Text;
         }
 
+        public string GetSearchButtonText()
+        {
+            return buttonSearch.Text;
+        }
+
+        public string GetSecondPromoText()
+        {
+            return secondPromo.Text;
+        }
+
+        public string GetThirdPromoText()
+        {
+            return thirdPromo.Text;
+        }
 
     }
 }

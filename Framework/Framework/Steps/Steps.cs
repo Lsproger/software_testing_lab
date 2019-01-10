@@ -50,6 +50,27 @@ namespace Framework.Steps
             mainPage.FillAirports(from, to);
         }
 
+        public void ChangeLocaleToRussian()
+        {
+            mainPage = new Pages.MainPage(driver);
+            mainPage.OpenPage();
+            mainPage.SetRussian();
+        }
+
+        public void SwitchToSecondAd()
+        {
+            mainPage = new Pages.MainPage(driver);
+            mainPage.OpenPage();
+            mainPage.GoToSecondAd();
+        }
+
+        public void SwitchToThirdAd()
+        {
+            mainPage = new Pages.MainPage(driver);
+            mainPage.OpenPage();
+            mainPage.GoToThirdAd();
+        }
+
         public string GetBadDestinationError()
         {            
             return mainPage.GetBadDestinationError();
@@ -70,55 +91,24 @@ namespace Framework.Steps
             return mainPage.GetBadOriginationError();
         }
 
+        public string GetSearchButtonText()
+        {
+            return mainPage.GetSearchButtonText();
+        }
 
         public string GetDateError()
         {
             return mainPage.GetDateError();
         }
 
-
-
-
-
-
-
-        public void LoginGithub(string username, string password)
+        public string GetSecondPromoText()
         {
-            //Pages.LoginPage loginPage = new Pages.LoginPage(driver);
-            //loginPage.OpenPage();
-            //loginPage.Login(username, password);
+            return mainPage.GetSecondPromoText();
         }
 
-        //public string GetLoggedInUserName()
-        //{
-        //    //Pages.LoginPage loginPage = new Pages.LoginPage(driver);
-        //    //return loginPage.GetLoggedInUserName();
-        //}
-
-        //public void CreateNewRepository(string repositoryName, string repositoryDescription)
-        //{
-        //    //Pages.MainPage mainPage = new Pages.MainPage(driver);
-        //    //mainPage.ClickOnCreateNewRepositoryButton();
-        //    //Pages.CreateNewRepositoryPage createNewRepositoryPage = new Pages.CreateNewRepositoryPage(driver);
-        //    //createNewRepositoryPage.CreateNewRepository(repositoryName, repositoryDescription);
-        //}
-
-        //public string GenerateRandomRepositoryNameWithCharLength(int howManyChars)
-        //{
-        //    //string repositoryNamePrefix = "testRepo_";
-        //    //return string.Concat(repositoryNamePrefix, Utils.RandomGenerator.GetRandomString(howManyChars));
-        //}
-
-        //public bool CurrentRepositoryIsEmpty()
-        //{
-        //    //Pages.CreateNewRepositoryPage createNewRepositoryPage = new Pages.CreateNewRepositoryPage(driver);
-        //    //return createNewRepositoryPage.IsCurrentRepositoryEmpty();
-        //}
-
-        //public string GetCurrentRepositoryName()
-        //{
-        //    //Pages.CreateNewRepositoryPage createNewRepositoryPage = new Pages.CreateNewRepositoryPage(driver);
-        //    //return createNewRepositoryPage.GetCurrentRepositoryName();
-        //}
+        public string GetThirdPromoText()
+        {
+            return mainPage.GetThirdPromoText();
+        }
     }
 }
