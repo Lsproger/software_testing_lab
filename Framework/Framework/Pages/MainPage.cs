@@ -108,11 +108,8 @@ namespace Framework.Pages
             wait.Until(ExpectedConditions.ElementToBeClickable(cityTo));
             cityTo.Clear();
             wait.Until(ExpectedConditions.ElementToBeClickable(cityTo));
+            cityTo.SendKeys("");
             cityTo.SendKeys(to);
-            wait.Until(ExpectedConditions.ElementToBeClickable(cityFrom));
-            cityFrom.SendKeys(Keys.ArrowDown);
-            wait.Until(ExpectedConditions.ElementToBeClickable(cityFrom));
-            cityFrom.SendKeys(Keys.ArrowDown);
             wait.Until(ExpectedConditions.ElementToBeClickable(cityTo));
             cityTo.SendKeys(Keys.Enter);
         }
@@ -124,21 +121,12 @@ namespace Framework.Pages
             ((IJavaScriptExecutor) driver).ExecuteScript("arguments[0].checked = true;", oneWayTrip);
         }
 
-        public void SelectDateToday()
+        public void SelectDateTomorrow(int directions)
         {
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < directions; i++)
             {
+                Thread.Sleep(100);
                 IWebElement today = driver.FindElement(By.CssSelector("#datepicker2 > div:nth-child(1) > table:nth-child(2) > tbody:nth-child(2) > tr:nth-child(2) > td:nth-child(5) > a:nth-child(1)"));
-                wait.Until(ExpectedConditions.ElementToBeClickable(today));
-                today.Click();
-            }
-        }
-
-        public void SelectDatePast()
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                IWebElement today = driver.FindElement(By.CssSelector("#datepicker2 > div:nth-child(1) > table:nth-child(2) > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(2) > span:nth-child(1)"));
                 wait.Until(ExpectedConditions.ElementToBeClickable(today));
                 today.Click();
             }

@@ -18,24 +18,28 @@ namespace Framework.Steps
         }
 
         public void FindRoute(string from, string to)
-        {
-            //Pages.MainPage mainPage = new Pages.MainPage(driver);
+        {          
             mainPage = new Pages.MainPage(driver);
             mainPage.OpenPage();
             mainPage.FillAirports(from, to);
-            mainPage.SetOneWayRoute();
-            mainPage.SelectDateToday();
+            mainPage.SelectDateTomorrow(2);
             mainPage.SearchClick();
         }
 
-        public void FindRouteInPast(string from, string to)
+        public void FindRouteWithoutDate(string from, string to)
+        {            
+            mainPage = new Pages.MainPage(driver);
+            mainPage.OpenPage();
+            mainPage.FillAirports(from, to);          
+            mainPage.SearchClick();
+        }
+
+        public void FindRouteWithoutReturnDate(string from, string to)
         {
-            //Pages.MainPage mainPage = new Pages.MainPage(driver);
             mainPage = new Pages.MainPage(driver);
             mainPage.OpenPage();
             mainPage.FillAirports(from, to);
-            mainPage.SetOneWayRoute();
-            mainPage.SelectDatePast();
+            mainPage.SelectDateTomorrow(1);
             mainPage.SearchClick();
         }
 
@@ -55,6 +59,13 @@ namespace Framework.Steps
         {
             return mainPage.GetDateError();
         }
+
+
+
+
+
+
+
         public void LoginGithub(string username, string password)
         {
             //Pages.LoginPage loginPage = new Pages.LoginPage(driver);

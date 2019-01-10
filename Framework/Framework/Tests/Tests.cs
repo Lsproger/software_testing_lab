@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Threading;
 
 namespace Framework
 {
@@ -34,12 +35,19 @@ namespace Framework
         }
 
         [Test]
-        public void FindRouteInPast()
+        public void FindRouteWithoutDate()
         {
-            steps.FindRouteInPast("LED", "MSQ");
+            steps.FindRouteWithoutDate("LED", "MSQ");
             Assert.AreEqual("Select departure and return dates", steps.GetDateError());
         }
 
+        [Test]
+        public void FindRouteWithoutReturnDate()
+        {
+            steps.FindRouteWithoutReturnDate("LED", "MSQ");
+            Thread.Sleep(3000);
+            Assert.AreEqual("Select flight date", steps.GetDateError());
+        }
 
 
         //[Test]
