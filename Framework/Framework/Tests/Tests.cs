@@ -45,10 +45,22 @@ namespace Framework
         public void FindRouteWithoutReturnDate()
         {
             steps.FindRouteWithoutReturnDate("LED", "MSQ");
-            Thread.Sleep(3000);
             Assert.AreEqual("Select flight date", steps.GetDateError());
         }
 
+        [Test]
+        public void CheckOriginationFieldAutoComplete()
+        {
+            steps.FindRouteWithoutReturnDate("LED", "");
+            Assert.AreEqual("Saint Petersburg, Pulkovo", steps.GetOriginationFieldValue());
+        }
+
+        [Test]
+        public void CheckDestinationFieldAutoComplete()
+        {
+            steps.FindRouteWithoutReturnDate("", "LED");
+            Assert.AreEqual("Saint Petersburg, Pulkovo", steps.GetDestinationFieldValue());
+        }
 
         //[Test]
         //public void OneCanLoginGithub()

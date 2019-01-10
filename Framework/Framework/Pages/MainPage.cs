@@ -80,7 +80,7 @@ namespace Framework.Pages
         {
             this.driver = driver;
             PageFactory.InitElements(this.driver, this);
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
         }
 
         public void OpenPage()
@@ -127,7 +127,7 @@ namespace Framework.Pages
             {
                 Thread.Sleep(100);
                 IWebElement today = driver.FindElement(By.CssSelector("#datepicker2 > div:nth-child(1) > table:nth-child(2) > tbody:nth-child(2) > tr:nth-child(2) > td:nth-child(5) > a:nth-child(1)"));
-                wait.Until(ExpectedConditions.ElementToBeClickable(today));
+                //wait.Until(ExpectedConditions.ElementToBeClickable(today));
                 today.Click();
             }
         }
@@ -156,6 +156,17 @@ namespace Framework.Pages
 
             return dateError.Text;
         }
+
+        public string GetOriginationFieldValue()
+        {
+            return cityFrom.Text;
+        }
+
+        public string GetDestinationFieldValue()
+        {
+            return cityFrom.Text;
+        }
+
 
     }
 }

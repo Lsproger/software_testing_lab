@@ -43,11 +43,27 @@ namespace Framework.Steps
             mainPage.SearchClick();
         }
 
+        public void CheckFromFieldAutoComplete(string from, string to)
+        {
+            mainPage = new Pages.MainPage(driver);
+            mainPage.OpenPage();
+            mainPage.FillAirports(from, to);
+        }
+
         public string GetBadDestinationError()
         {            
             return mainPage.GetBadDestinationError();
         }
 
+        public string GetOriginationFieldValue()
+        {
+            return mainPage.GetOriginationFieldValue();
+        }
+
+        public string GetDestinationFieldValue()
+        {
+            return mainPage.GetDestinationFieldValue();
+        }
 
         public string GetBadOriginationError()
         {
