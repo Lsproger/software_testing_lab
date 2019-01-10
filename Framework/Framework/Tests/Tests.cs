@@ -51,15 +51,15 @@ namespace Framework
         [Test]
         public void CheckOriginationFieldAutoComplete()
         {
-            steps.FindRouteWithoutReturnDate("LED", "");
-            Assert.AreEqual("Saint Petersburg, Pulkovo", steps.GetOriginationFieldValue());
+            steps.FillAirports("LED", "");
+            Assert.AreEqual("LED", steps.GetOriginationFieldValue());
         }
 
         [Test]
         public void CheckDestinationFieldAutoComplete()
         {
-            steps.FindRouteWithoutReturnDate("", "LED");
-            Assert.AreEqual("Saint Petersburg, Pulkovo", steps.GetDestinationFieldValue());
+            steps.FillAirports("", "LED");
+            Assert.AreEqual("LED", steps.GetDestinationFieldValue());
         }
 
         [Test]

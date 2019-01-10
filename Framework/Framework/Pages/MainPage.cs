@@ -18,14 +18,18 @@ namespace Framework.Pages
 
         [FindsBy(How = How.Id, Using = "flights_origin2")]
         private IWebElement cityFrom;
-        
+
+        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div[2]/div[3]/div[2]/div/div/div/div/div[1]/div/div/div[1]/div[1]/form/div[2]/div[1]/div/span[1]")]
+        private IWebElement selectedCityFrom;
+
+        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div[2]/div[3]/div[2]/div/div/div/div/div[1]/div/div/div[1]/div[1]/form/div[2]/div[3]/div/span[1]")]
+        private IWebElement selectedCityTo;
 
         [FindsBy(How = How.Id, Using = "flights_origin2-error")]
         private IWebElement cityFromError;
 
         [FindsBy(How = How.Id, Using = "flights_destination2")]
         private IWebElement cityTo;
-        
 
         [FindsBy(How = How.Id, Using = "flights_destination2-error")]
         private IWebElement cityToError;
@@ -109,8 +113,7 @@ namespace Framework.Pages
         {
             for (int i = 0; i < directions; i++)
             {
-                datePicker.Click();
-                Thread.Sleep(100);
+                datePicker.Click();                
                 IWebElement today = driver.FindElement(By.CssSelector("#datepicker2 > div:nth-child(1) > table:nth-child(2) > tbody:nth-child(2) > tr:nth-child(2) > td:nth-child(5) > a:nth-child(1)"));
                 //wait.Until(ExpectedConditions.ElementToBeClickable(today));
                 today.Click();
@@ -156,12 +159,12 @@ namespace Framework.Pages
 
         public string GetOriginationFieldValue()
         {
-            return cityFrom.Text;
+            return selectedCityFrom.Text;
         }
 
         public string GetDestinationFieldValue()
         {
-            return cityFrom.Text;
+            return selectedCityTo.Text;
         }
 
         public string GetSearchButtonText()

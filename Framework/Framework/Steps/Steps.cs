@@ -43,6 +43,13 @@ namespace Framework.Steps
             mainPage.SearchClick();
         }
 
+        public void FillAirports(string from, string to)
+        {
+            mainPage = new Pages.MainPage(driver);
+            mainPage.OpenPage();
+            mainPage.FillAirports(from, to);
+        }
+
         public void CheckFromFieldAutoComplete(string from, string to)
         {
             mainPage = new Pages.MainPage(driver);
